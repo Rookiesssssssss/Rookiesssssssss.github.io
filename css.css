@@ -1,8 +1,7 @@
+/* 头部网址与背景 */
+
 .title{
     font-size: 30px;
-}
-.background{
-    width: 100%;
 }
 .网址{
     height: 50px;
@@ -13,9 +12,17 @@
 .网址 h1{
     font-size: 40px;
 }
+body{
+    background-image: url(./背景猫猫图.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+}
+/* 侧边栏 */
+
 .侧边栏{
-    position: relative;
     width: 20%;
+    height: 100%;
     float: left;
     background-color: rgba(0, 128, 255, 0.5);
     position: absolute;
@@ -25,9 +32,54 @@
 .侧边栏 ul li a{
     font-size: 30px;
     color: rgb(230, 0, 255);
-    position: relative;
-    left: 22%;
+    padding-left: 22%;
 }
 .侧边栏 ul :hover{
     background-color: aliceblue;
+}
+
+/* 自述 */
+
+.自述窗口{
+    position: absolute;
+    left: 20%;
+    height: 100%;
+    width: 80%;
+    background-color: rgba(97, 29, 255, 0.4);
+    font-family: kaiti;
+    font-size: 30px;
+    position: relative
+}
+
+.内容{
+    float: left;
+    padding-left: 5%;
+}
+
+.日期{
+    float: right;
+    padding-right: 10%;
+}
+
+/* 页面2弹出式 */
+
+.侧边栏内容 li:hover>.页面2弹出式{
+    width: 100vw;
+}
+.页面2弹出式{
+    width: 0;
+    height: 100%;
+    background-color: rgba(255, 235, 205, 0.5);
+    position: absolute;
+    left: 100%;
+    top: 0;
+    overflow: hidden;
+}
+.页面2弹出式 p{
+    font-family: kaiti;
+    font-size: 30px;
+    color: black;
+    position: absolute;
+    top: 70px;
+    left: 200px;
 }
