@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>番剧评鉴</title>
+    <link rel="stylesheet" href="./css.css">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background-color: #0b0b0b;
+        }
+        /* 导航栏 */
+        .nav_diary{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 3%;
+            left: 2%;
+            width: 7rem;
+            height: 4rem;
+            border: 3px solid;
+            border-color: #6A00FF;
+            box-shadow: 0px 0px 15px #292929;
+            border-radius: 40px;
+            color: #FFFFFF;
+        }
+        .nav_dream:hover{
+            background-color: #6A00FF;
+            color: black;
+            box-shadow: 0px 0px 15px #6A00FF;
+            transition: 0.8s;
+        }
+
+        .nav_game{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 3%;
+            left: 12%;
+            width: 7rem;
+            height: 4rem;
+            border: 3px solid;
+            border-color: #6A00FF;
+            box-shadow: 0px 0px 15px #292929;
+            border-radius: 40px;
+            color: #FFFFFF;
+        }
+        .nav_game:hover{
+            background-color: #6A00FF;
+            color: black;
+            box-shadow: 0px 0px 15px #6A00FF;
+            transition: 0.8s;
+        }
+
+        .nav_dream{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 3%;
+            left: 32%;
+            width: 7rem;
+            height: 4rem;
+            border: 3px solid;
+            border-color: #6A00FF;
+            box-shadow: 0px 0px 15px #292929;
+            border-radius: 40px;
+            color: #FFFFFF;
+        }
+        .nav_dream:hover{
+            background-color: #6A00FF;
+            color: black;
+            box-shadow: 0px 0px 15px #6A00FF;
+            transition: 0.8s;
+        }
+
+        .nav_anime{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 3%;
+            left: 22%;
+            width: 7rem;
+            height: 4rem;
+            border: 3px solid;
+            border-color: #6A00FF;
+            box-shadow: 0px 0px 15px #292929;
+            border-radius: 40px;
+            color: black;
+        }
+        .nav_anime::after,
+        .nav_anime::before{
+            background-color: #6A00FF;
+        }
+    </style>
+</head>
+<body>
+            <!-- 加载界面 -->
+    <div class="loading">
+        <svg viewbox='0 0 50 50'>
+            <circle r='25' cx='25' cy='25'></circle>
+        </svg>
+        <p>londing...</p>
+    </div>
+            <!-- 导航栏 -->
+    <button onclick="loading.in('./diary.html')" class="nav_diary">
+        <span>diary</span> 
+    </button>
+    <button onclick="loading.in('./game.html')" class="nav_game">
+        <span >games</span>
+    </button>
+    <button onclick="loading.in('./dream.html')" class="nav_dream">
+        <span>dream</span>
+    </button>
+    <button class="nav_anime">
+        <span>anime</span>
+    </button>
+            <!-- 内容 -->
+    <ul class="game">
+        <li>
+            <img src="images\anime\.png" alt="">
+            <div>
+                <h3>饥荒<span>9.0</span></h3>
+                <p>生存游戏三巨头之一，</p>
+            </div>
+        </li>
+        <li>
+            <img src="images\anime\.png" alt="">
+            <div>
+                <h3>饥荒：联机版<span>9.0</span></h3>
+                <p>联机为这个游戏给予了新的活力，</p>
+            </div>
+        </li>
+        <li>
+            <img src="images\anime\.png" alt="">
+            <div>
+                <h3>饥荒<span>9.0</span></h3>
+                <p>联机为这个游戏给予了新的活力，</p>
+            </div>
+        </li>
+        <li>
+            <img src="images\anime\.png" alt="">
+            <div>
+                <h3>饥荒<span>9.0</span></h3>
+                <p>联机为这个游戏给予了新的活力，</p>
+            </div>
+        </li>
+        <li>
+            <img src="images\anime\.png" alt="">
+            <div>
+                <h3>饥荒<span>9.0</span></h3>
+                <p>联机为这个游戏给予了新的活力，</p>
+            </div>
+        </li>
+    </ul>
+</body>
+
+
+<script>
+    const loading = {
+        container: document.querySelector(".loading"),
+        in(target) {
+            this.container.classList.remove("loading_out");
+            setTimeout(() => {
+                window.location.href = target;
+            }, 1000)
+        },
+        out() {
+            this.container.classList.add("loading_out");
+        }
+    };
+    window.addEventListener("load", () => {
+        loading.out();
+    })
+</script>
+</html>

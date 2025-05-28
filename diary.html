@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开发日记</title>
+    <link rel="stylesheet" href="./css.css">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background-color: #0b0b0b;
+        }
+        /* 导航栏 */
+        .nav_diary{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 3%;
+            left: 2%;
+            width: 7rem;
+            height: 4rem;
+            border: 3px solid;
+            border-color: #6A00FF;
+            box-shadow: 0px 0px 15px #292929;
+            border-radius: 40px;
+            color: black;
+        }
+        .nav_diary::after,
+        .nav_diary::before{
+            background-color: #6A00FF;
+        }
+
+        .nav_game{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 3%;
+            left: 12%;
+            width: 7rem;
+            height: 4rem;
+            border: 3px solid;
+            border-color: #6A00FF;
+            box-shadow: 0px 0px 15px #292929;
+            border-radius: 40px;
+            color: #FFFFFF;
+        }
+        .nav_game:hover{
+            background-color: #6A00FF;
+            color: black;
+            box-shadow: 0px 0px 15px #6A00FF;
+            transition: 0.8s;
+        }
+
+        .nav_dream{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 3%;
+            left: 32%;
+            width: 7rem;
+            height: 4rem;
+            border: 3px solid;
+            border-color: #6A00FF;
+            box-shadow: 0px 0px 15px #292929;
+            border-radius: 40px;
+            color: #FFFFFF;
+        }
+        .nav_dream:hover{
+            background-color: #6A00FF;
+            color: black;
+            box-shadow: 0px 0px 15px #6A00FF;
+            transition: 0.8s;
+        }
+
+        .nav_anime{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 3%;
+            left: 22%;
+            width: 7rem;
+            height: 4rem;
+            border: 3px solid;
+            border-color: #6A00FF;
+            box-shadow: 0px 0px 15px #292929;
+            border-radius: 40px;
+            color: #FFFFFF;
+        }
+        .nav_anime:hover{
+            background-color: #6A00FF;
+            color: black;
+            box-shadow: 0px 0px 15px #6A00FF;
+            transition: 0.8s;
+        }
+    </style>
+</head>
+
+
+<body>
+            <!-- 加载界面 -->
+    <div class="loading">
+        <svg viewbox='0 0 50 50'>
+            <circle r='25' cx='25' cy='25'></circle>
+        </svg>
+        <p>londing...</p>
+    </div>
+            <!-- 导航栏 -->
+    <button class="nav_diary">
+        <span>diary</span> 
+    </button>
+    <button onclick="loading.in('./game.html')" class="nav_game">
+        <span>games</span>
+    </button>
+    <button onclick="loading.in('./dream.html')" class="nav_dream">
+        <span>dream</span>
+    </button>
+    <button onclick="loading.in('./anime.html')" class="nav_anime">
+        <span>anime</span>
+    </button>
+            <!-- 内容 -->
+    <div class="content">
+        <ul>
+            <li>今天看了不少高级的网页设计，所以着手做了一个纯色的新网页，还跟着学了页面跳转动画。虽然一知半解，但总算有些收获。
+                <br><span>————5.23</span>
+            </li><br>
+            <li>学了学阴影，给网站加了两个标签页，今天早些休息了。（想念猫猫头了）
+                <br><span>————5.24</span>
+            </li><br>
+            <li>抄了个按钮，会用就行吧应该，今天时间好少。明天争取把内容框架都弄好,还有配色改了。
+                <br><span>————5.25</span>
+            </li><br>
+            <li>昨天把游戏跟番的格式都弄完了，至于内容就慢慢写吧。今天又把ai模块样式搭差不多了，希望明天能把ai调好。
+                <br><span>————5.27</span>
+            </li><br>
+            <li>ai本地部署能用了，下一步搞服务器吧，还有调教ai也得提上日程
+                <br><span>————5.28</span>
+            </li><br>
+        </ul>
+    </div>
+</body>
+
+
+<script>
+    const loading = {
+        container: document.querySelector(".loading"),
+        in(target) {
+            this.container.classList.remove("loading_out");
+            setTimeout(() => {
+                window.location.href = target;
+            }, 1000)
+        },
+        out() {
+            this.container.classList.add("loading_out");
+        }
+    };
+    window.addEventListener("load", () => {
+        loading.out();
+    })
+</script>
+</html>

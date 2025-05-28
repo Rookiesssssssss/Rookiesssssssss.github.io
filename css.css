@@ -1,85 +1,174 @@
-/* 头部网址与背景 */
-
-.title{
-    font-size: 30px;
+            /* 初始化 */
+*{
+    padding: 0;
+    margin: 0;
+    font-size: 2vmin;
 }
-.网址{
-    height: 50px;
-    position: absolute;
-    left: 22%;
-    top: 0;
-}
-.网址 h1{
-    font-size: 40px;
-}
-body{
-    background-image: url(./背景猫猫图.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;  
-    background-size: cover;
-}
-/* 侧边栏 */
-
-.侧边栏{
-    width: 20%;
-    height: 100%;
-    float: left;
-    background-color: rgba(0, 128, 255, 0.5);
-    position: absolute;
+            /* 加载界面 */ 
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    flex-direction: column;
     left: 0;
     top: 0;
+    z-index: 100000;
+    width: 100%;
+    height: 100vh;
+    background-color: #00829b;
+    transition: 1s ease;
 }
-.侧边栏 ul li a{
-    font-size: 30px;
-    color: rgb(230, 0, 255);
-    padding-left: 22%;
+.loading svg{
+    width: 5rem;
+    margin-bottom: 2rem;
+    overflow: visible;
+    transition: 0.3s ease;
 }
-.侧边栏 ul :hover{
-    background-color: aliceblue;
+.loading svg circle{
+    fill: none;
+    stroke: black;
+    stroke-width: 12;
+    stroke-dasharray: 160;
+    stroke-dashoffset: 160;
+    transform-origin: center;
+    animation: circle_rotate 3s ease-in infinite;
 }
-
-/* 自述 */
-
-.自述窗口{
-    position: absolute;
-    left: 20%;
-    height: 100%;
-    width: 80%;
-    background-color: rgba(97, 29, 255, 0.4);
-    font-family: kaiti;
-    font-size: 30px;
-    position: relative
-}
-
-.内容{
-    float: left;
-    padding-left: 5%;
-}
-
-.日期{
-    float: right;
-    padding-right: 10%;
-}
-
-/* 页面2弹出式 */
-
-.侧边栏内容 li:hover>.页面2弹出式{
-    width: 100vw;
-}
-.页面2弹出式{
-    width: 0;
-    height: 100%;
-    background-color: rgba(255, 235, 205, 0.5);
-    position: absolute;
-    left: 100%;
-    top: 0;
-    overflow: hidden;
-}
-.页面2弹出式 p{
-    font-family: kaiti;
-    font-size: 30px;
+.loading p{
+    font-family: sans-serif;
+    font-size: 2rem;
     color: black;
+    font-weight: 900;
+    transition: 0.3s ease;
+}
+.loading_out {
+    transform: translateY(100%);
+}
+
+.loading_out svg,
+.loading_out p {
+    opacity: 0;
+}
+
+@keyframes circle_rotate {
+    0% {
+        transform: rotate(0deg);
+        stroke-dashoffset: 160;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        stroke-dashoffset: -160;
+    }
+}
+
+            /* 按钮 */
+
+button {
+ outline: none;
+ cursor: pointer;
+ border: none;
+ padding: 0.9rem 2rem;
+ margin: 0;
+ font-family: inherit;
+ font-size: inherit;
+ position: relative;
+ letter-spacing: 0.05rem;
+ font-weight: 700;
+ border-radius: 500000px;
+ overflow: hidden;
+ background: #6A00FF;
+}
+
+button span {
+ position: relative;
+ z-index: 10;
+ transition: color 0.4s;
+ font-size: 1.4rem;
+}
+
+button:hover span {
+ color: black;
+}
+
+button::before,
+button::after {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ z-index: 0;
+}
+
+button::before {
+ content: "";
+ background: #292929;
+ width: 120%;
+ left: -10%;
+ transform: skew(30deg);
+ transform-origin: left;
+ transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+button:hover::before {
+ transform: translate3d(100%, 0, 0);
+}
+
+            /* dairy内容 */
+
+.content{
     position: absolute;
-    top: 70px;
-    left: 200px;
+    top: 15%;
+
+}
+.content li{
+    font-family: kaiti;
+    font-size: 2rem;
+    color: aliceblue;
+    position: relative;
+    left: 10%;
+    width: 78%;
+}
+.content li span{
+    font-family: kaiti;
+    font-size: 2rem;
+    color: aliceblue;
+    position: relative;
+    right: -88%;
+}
+
+            /* game anime内容 */
+.game{
+    position: relative;
+    height: 0;
+    top: 0;
+}
+.game li{
+    display: flex;
+    gap: 40px;
+    position: relative;
+    left: -28rem;
+    top: -15rem;
+    height: 300px;
+    color: antiquewhite;
+    margin-bottom: 50px;
+}
+.game li img{
+    border-radius: 8%;
+    display: block;
+}
+.game li div{
+    display: flex;
+    flex-direction: column;
+}
+.game li h3{
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.game li h3 span{
+    font-size: 2rem;
+    margin-bottom: 20px;
+    float: right;
+    margin-right: 0.5rem;
 }

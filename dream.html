@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记梦手册</title>
+    <link rel="stylesheet" href="./css.css">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background-color: #0b0b0b;
+        }
+        /* 导航栏 */
+        .nav_diary{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 3%;
+            left: 2%;
+            width: 7rem;
+            height: 4rem;
+            border: 3px solid;
+            border-color: #6A00FF;
+            box-shadow: 0px 0px 15px #292929;
+            border-radius: 40px;
+            color: #FFFFFF;
+            /* background-color: rgb(168, 168, 168); */
+        }
+        .nav_diary:hover{
+            background-color: #6A00FF;
+            color: black;
+            box-shadow: 0px 0px 15px #6A00FF;
+            transition: 0.8s;
+        }
+
+        .nav_game{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 3%;
+            left: 12%;
+            width: 7rem;
+            height: 4rem;
+            border: 3px solid;
+            border-color: #6A00FF;
+            box-shadow: 0px 0px 15px #292929;
+            border-radius: 40px;
+            color: #FFFFFF;
+        }
+        .nav_game:hover{
+            background-color: #6A00FF;
+            color: black;
+            box-shadow: 0px 0px 15px #6A00FF;
+            transition: 0.8s;
+        }
+
+        .nav_dream{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 3%;
+            left: 32%;
+            width: 7rem;
+            height: 4rem;
+            border: 3px solid;
+            border-color: #6A00FF;
+            box-shadow: 0px 0px 15px #292929;
+            border-radius: 40px;
+            color: black;
+        }
+        .nav_dream::after,
+        .nav_dream::before{
+            background-color: #6A00FF;
+        }
+
+        .nav_anime{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 3%;
+            left: 22%;
+            width: 7rem;
+            height: 4rem;
+            border: 3px solid;
+            border-color: #6A00FF;
+            box-shadow: 0px 0px 15px #292929;
+            border-radius: 40px;
+            color: #FFFFFF;
+        }
+        .nav_anime:hover{
+            background-color: #6A00FF;
+            color: black;
+            box-shadow: 0px 0px 15px #6A00FF;
+            transition: 0.8s;
+        }
+
+            /* ai问题栏 */
+
+        .ai_content{
+            position: relative;
+            height: 200px;
+            left: -1rem;
+            top: -10rem;
+        }
+        .ai_content h1{
+            position: relative;
+            color: #00E5FF;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            cursor: default;
+            user-select: none;
+        }
+        #prompt{
+            width: 30rem;
+            height: 25rem;
+            background-color: #292929;
+            border: 0 solid #292929;
+            border-radius: 10px;
+            resize: none;
+            color: #FFFFFF;
+            font-family: kaiti;
+            font-size: 1.5rem;
+            outline: none;
+            padding: 10px;
+            /* user-select: text; */
+        }
+        .ai_content button{
+            float: right;
+            background-color: #00829b;
+            margin-top: 20px;
+            color: #0b0b0b;
+            transition: 0.3s;           
+        }
+        .ai_content button::before{
+            z-index: -1;
+        }
+        .ai_content button:hover{
+            box-shadow: 0px 0px 15px #00829b; 
+        }
+
+        /* ai回答栏 */
+
+        #response{
+            width: 40rem;
+            height: 36rem;
+            margin-top: 100px;
+            margin-left: 150px;
+            border: 2px solid #292929;
+            border-radius: 20px;
+            color: #FFFFFF;
+            font-family: kaiti;
+            font-size: 1.5rem;
+            padding: 10px;
+            background-color: #292929;
+            outline: none;
+            resize: none;
+        }
+        textarea::-webkit-scrollbar-track{
+            background-color: #292929;
+            border-radius: 20px;
+        }
+        textarea::-webkit-scrollbar-thumb{
+            background-color: #404040;
+        }
+        textarea {
+        scrollbar-color: #404040 #292929;
+        scrollbar-width: none;
+    }
+
+    </style>
+</head>
+<body>
+            <!-- 加载界面 -->
+    <div class="loading">
+        <svg viewbox='0 0 50 50'>
+            <circle r='25' cx='25' cy='25'></circle>
+        </svg>
+        <p>londing...</p>
+    </div>
+            <!-- 导航栏 -->
+    <button onclick="loading.in('./diary.html')" class="nav_diary">
+        <span>diary</span> 
+    </button>
+    <button onclick="loading.in('./game.html')" class="nav_game">
+        <span >games</span>
+    </button>
+    <button class="nav_dream">
+        <span>dream</span>
+    </button>
+    <button onclick="loading.in('./anime.html')" class="nav_anime">
+        <span>anime</span>
+    </button>
+            <!-- 内容 -->
+    <div class="ai_content">
+        <h1>AI 解梦</h1>
+    
+        <textarea id="prompt" rows="5" cols="50" placeholder="输入你的问题..."></textarea><br>
+        <button onclick="sendRequest()">发送</button>
+    </div>
+        <textarea readonly id="response"></textarea>
+             
+
+            <!-- js部分 -->
+
+    <script>
+    async function sendRequest() {
+    const prompt = document.getElementById('prompt').value;
+    
+    if (!prompt.trim()) {
+        alert('请输入内容');
+        return;
+    }
+    
+    try {
+        document.getElementById('response').innerHTML = "思考中...";
+        
+        const response = await callOllama(prompt);
+        const answer = response.message.content;
+        
+        document.getElementById('response').innerHTML = answer;       
+    } catch (error) {
+        console.error(error);
+        document.getElementById('response').innerHTML = `出错啦！${error.message}`;
+     }
+}
+
+// Direct API approach (not recommended for production)
+async function callOllama(prompt) {
+   const response = await fetch('http://localhost:11434/api/chat', {  // Ollama默认API地址http://localhost:11434/api/chat  https://331pb320ah23.vicp.fun/api/application/6c821484-b888-11ef-9c65-0242ac110002
+     method: 'POST',
+     headers: { 
+       'Content-Type': 'application/json',
+       'Authorization': 'application-b7089aa621b4340fac0f3d7f4d07a06b'
+       // Ollama通常不需要API密钥，除非你特别配置了
+     },
+     body: JSON.stringify({
+       model: "gemma3:4b",  // 替换为你本地安装的模型名称，如llama2、mistral等gemma3:4b
+       messages: [
+         {role: "system", content: "请根据意象分析法解释以下梦境，省略开头寒暄与结尾的注意事项，不适用高级排版，并用中文回答"},
+         {role: "user", content: prompt}
+       ],
+       stream: false,  // Ollama支持流式响应，这里设为false获取完整响应
+       options: {
+         temperature: 0.7,
+         num_predict: 1000  // Ollama使用num_predict而不是max_tokens
+       }
+     })
+   });
+   
+    return await response.json();
+   }
+</script>    
+</body>
+
+
+<script>
+    const loading = {
+        container: document.querySelector(".loading"),
+        in(target) {
+            this.container.classList.remove("loading_out");
+            setTimeout(() => {
+                window.location.href = target;
+            }, 1000)
+        },
+        out() {
+            this.container.classList.add("loading_out");
+        }
+    };
+    window.addEventListener("load", () => {
+        loading.out();
+    })
+</script>
+</html>
